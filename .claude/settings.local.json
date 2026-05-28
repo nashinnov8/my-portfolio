@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm --version)",
+      "Bash(pnpm --version)",
+      "Bash(mkdir -p /tmp/cv-backup)",
+      "Bash(mv NguyenLeNguyen_CV.pdf /tmp/cv-backup/)",
+      "Bash(pnpm create *)"
+    ]
+  }
+}
