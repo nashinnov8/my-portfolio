@@ -59,7 +59,7 @@ export function Hero() {
             width={800}
             height={1200}
             priority
-            className="relative z-10 h-full w-full rounded-xl border border-border-subtle object-cover grayscale transition-all duration-700 hover:grayscale-0"
+            className="relative z-10 h-full w-full rounded-xl border border-border-subtle object-cover object-top grayscale transition-all duration-700 hover:grayscale-0"
           />
         </div>
       </div>
