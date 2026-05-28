@@ -54,12 +54,11 @@ export function Hero() {
         <div className="relative aspect-square w-full max-w-[400px]">
           <div className="absolute inset-0 rounded-full bg-primary/5 blur-3xl" />
           <Image
-            src="/avatar.svg"
+            src="/avatar.jpg"
             alt={`${profile.name} portrait`}
-            width={400}
-            height={400}
+            width={800}
+            height={1200}
             priority
-            unoptimized
             className="relative z-10 h-full w-full rounded-xl border border-border-subtle object-cover grayscale transition-all duration-700 hover:grayscale-0"
           />
         </div>
