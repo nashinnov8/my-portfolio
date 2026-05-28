@@ -10,7 +10,8 @@
       "Bash(mv /tmp/cv-backup/NguyenLeNguyen_CV.pdf public/NguyenLeNguyen_CV.pdf)",
       "Bash(pnpm dlx *)",
       "Bash(pnpm add *)",
-      "Bash(pnpm build *)"
+      "Bash(pnpm build *)",
+      "Bash(grep -iE \"^\\(phone|mail|map-pin|terminal|arrow-up-right|arrow-down|external-link\\)\\\\.mjs$\")"
     ]
   }
 }

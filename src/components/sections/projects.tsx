@@ -1,67 +1,103 @@
 import Link from "next/link";
-import { ArrowUpRight } from "lucide-react";
-import { Section } from "@/components/section";
-import { projects } from "@/lib/cv";
+import { Terminal } from "lucide-react";
+import { projects, type Project } from "@/lib/cv";
+
+const FILENAME_BY_PROJECT: Record<string, string> = {
+  "Ecommerce Microservices": "microservices_ecommerce.java",
+  "Dental Clinic Booking": "dental_clinic_booking.cs",
+};
+
+function fileName(p: Project) {
+  return (
+    FILENAME_BY_PROJECT[p.name] ??
+    `${p.name.toLowerCase().replace(/\s+/g, "_")}.md`
+  );
+}
 
 export function Projects() {
   return (
-    <Section id="projects" title="Projects">
-      <div className="space-y-12">
+    <section id="projects" className="py-16">
+      <div className="mb-12 flex items-center gap-4">
+        <span className="font-mono text-2xl text-primary opacity-50">02.</span>
+        <h2 className="text-2xl font-semibold">Engineering Projects</h2>
+        <div className="h-px flex-grow bg-border-subtle" />
+      </div>
+
+      <div className="grid grid-cols-1 gap-8">
         {projects.map((p) => (
           <article
             key={p.name}
-            className="grid grid-cols-1 gap-2 sm:grid-cols-[10rem_1fr] sm:gap-8"
+            className="glow-hover overflow-hidden rounded-lg border border-border-subtle bg-surface-charcoal"
           >
-            <div className="font-mono text-xs text-muted-foreground sm:pt-1">
-              {p.period}
+            <div className="flex items-center justify-between border-b border-border-subtle bg-terminal-black px-6 py-2">
+              <div className="flex items-center gap-12">
+                <div className="terminal-dots" />
+                <span className="font-mono text-sm text-primary">
+                  {fileName(p)}
+                </span>
+              </div>
+              <span className="font-mono text-xs text-text-muted">
+                {p.period}
+              </span>
             </div>
-            <div>
-              <div className="flex flex-wrap items-baseline justify-between gap-x-4">
-                <h3 className="text-base font-medium text-foreground">
+
+            <div className="grid grid-cols-1 gap-8 p-6 lg:grid-cols-12">
+              <div className="lg:col-span-7">
+                <h3 className="mb-4 text-2xl font-semibold text-on-surface">
                   {p.name}
                 </h3>
+                <p className="mb-6 text-base leading-relaxed text-on-surface-variant">
+                  {p.description}
+                </p>
+                <div className="space-y-4">
+                  {p.bullets.map((b) => (
+                    <div key={b} className="flex items-start gap-3">
+                      <span className="mt-1 font-mono font-bold text-secondary">
+                        &gt;
+                      </span>
+                      <p className="font-mono text-sm leading-relaxed text-on-surface-variant">
+                        {b}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <div className="flex flex-col justify-between lg:col-span-5">
+                <div>
+                  <h4 className="mb-4 font-mono text-[11px] font-semibold uppercase tracking-[0.15em] text-secondary">
+                    SYSTEM_STACK
+                  </h4>
+                  <div className="flex flex-wrap gap-2">
+                    {p.tech.map((t) => (
+                      <span
+                        key={t}
+                        className="border border-border-subtle bg-surface-container px-2 py-0.5 font-mono text-xs text-on-surface-variant"
+                      >
+                        {t}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+
                 {p.link ? (
-                  <Link
-                    href={p.link.href}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="inline-flex items-center gap-1 text-xs text-muted-foreground transition-colors hover:text-foreground"
-                  >
-                    {p.link.label}
-                    <ArrowUpRight className="h-3 w-3" />
-                  </Link>
+                  <div className="mt-8 flex gap-4">
+                    <Link
+                      href={p.link.href}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="flex items-center gap-2 font-mono text-sm text-primary hover:underline"
+                    >
+                      <Terminal className="h-[18px] w-[18px]" />
+                      VIEW_SOURCE
+                    </Link>
+                  </div>
                 ) : null}
               </div>
-              {(p.role || p.team) && (
-                <p className="mt-1 text-xs text-muted-foreground">
-                  {[p.role, p.team].filter(Boolean).join(" · ")}
-                </p>
-              )}
-              <p className="mt-3 text-sm leading-relaxed text-foreground/80">
-                {p.description}
-              </p>
-              <ul className="mt-3 space-y-2 text-sm leading-relaxed text-foreground/80">
-                {p.bullets.map((b) => (
-                  <li key={b} className="flex gap-2">
-                    <span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-muted-foreground/60" />
-                    <span>{b}</span>
-                  </li>
-                ))}
-              </ul>
-              <ul className="mt-4 flex flex-wrap gap-1.5">
-                {p.tech.map((t) => (
-                  <li
-                    key={t}
-                    className="rounded-md border border-border px-2 py-0.5 font-mono text-[11px] text-muted-foreground"
-                  >
-                    {t}
-                  </li>
-                ))}
-              </ul>
             </div>
           </article>
         ))}
       </div>
-    </Section>
+    </section>
   );
 }

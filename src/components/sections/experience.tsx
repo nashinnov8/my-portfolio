@@ -1,46 +1,46 @@
-import { Section } from "@/components/section";
-import { experiences, education } from "@/lib/cv";
+import { experiences } from "@/lib/cv";
 
 export function Experience() {
   return (
-    <Section id="experience" title="Experience">
-      <ol className="space-y-10">
-        {experiences.map((e) => (
-          <li
-            key={e.company}
-            className="grid grid-cols-1 gap-2 sm:grid-cols-[10rem_1fr] sm:gap-8"
-          >
-            <div className="font-mono text-xs text-muted-foreground sm:pt-1">
-              {e.period}
-            </div>
-            <div>
-              <h3 className="text-base font-medium text-foreground">
-                {e.role}{" "}
-                <span className="text-muted-foreground">· {e.company}</span>
+    <section id="experience" className="py-16">
+      <div className="mb-12 flex items-center gap-4">
+        <span className="font-mono text-2xl text-primary opacity-50">03.</span>
+        <h2 className="text-2xl font-semibold">Professional Journey</h2>
+        <div className="h-px flex-grow bg-border-subtle" />
+      </div>
+
+      <div className="relative space-y-12 before:absolute before:bottom-2 before:left-[7px] before:top-2 before:w-px before:bg-border-subtle before:content-['']">
+        {experiences.map((e, idx) => (
+          <div key={e.company} className="relative pl-10">
+            <div
+              className={`absolute left-0 top-2 h-[15px] w-[15px] rounded-full border-4 border-terminal-black ${
+                idx === 0 ? "bg-primary" : "bg-border-subtle"
+              }`}
+            />
+            <div className="mb-2 flex flex-col justify-between md:flex-row md:items-center">
+              <h3 className="text-lg font-bold text-on-surface">
+                {e.role} <span className="text-primary">@ {e.company}</span>
               </h3>
-              <ul className="mt-3 space-y-2 text-sm leading-relaxed text-foreground/80">
+              <span className="font-mono text-sm text-text-muted">
+                {e.period}
+              </span>
+            </div>
+            <div className="rounded-lg border border-border-subtle bg-surface-charcoal p-4">
+              <ul className="space-y-2">
                 {e.bullets.map((b) => (
-                  <li key={b} className="flex gap-2">
-                    <span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-muted-foreground/60" />
+                  <li
+                    key={b}
+                    className="flex items-start gap-2 text-base text-on-surface-variant"
+                  >
+                    <span className="font-bold text-secondary">-</span>
                     <span>{b}</span>
                   </li>
                 ))}
               </ul>
             </div>
-          </li>
+          </div>
         ))}
-        <li className="grid grid-cols-1 gap-2 sm:grid-cols-[10rem_1fr] sm:gap-8">
-          <div className="font-mono text-xs text-muted-foreground sm:pt-1">
-            {education.period}
-          </div>
-          <div>
-            <h3 className="text-base font-medium text-foreground">
-              {education.degree}{" "}
-              <span className="text-muted-foreground">· {education.school}</span>
-            </h3>
-          </div>
-        </li>
-      </ol>
-    </Section>
+      </div>
+    </section>
   );
 }
