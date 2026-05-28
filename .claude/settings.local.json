@@ -5,7 +5,11 @@
       "Bash(pnpm --version)",
       "Bash(mkdir -p /tmp/cv-backup)",
       "Bash(mv NguyenLeNguyen_CV.pdf /tmp/cv-backup/)",
-      "Bash(pnpm create *)"
+      "Bash(pnpm create *)",
+      "Bash(mkdir -p public)",
+      "Bash(mv /tmp/cv-backup/NguyenLeNguyen_CV.pdf public/NguyenLeNguyen_CV.pdf)",
+      "Bash(pnpm dlx *)",
+      "Bash(pnpm add *)"
     ]
   }
 }
